@@ -41,8 +41,9 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
-
+'''
 @api_view(['GET'])
+
 def api_root(request, format=None):
     return Response({
         'users': reverse('user-list', request=request, format=format),
@@ -50,5 +51,5 @@ def api_root(request, format=None):
     })
 
 
-
+'''
 
