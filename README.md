@@ -41,7 +41,7 @@ pip install httpie
 ```
 httpie is a cURL-like HTTP client with easy-to-read syntax. We will be using it for the purposes of this example.
 ### HTTP GET
-This command returns you the snippet list in the command line. Modifying the url (e.g. /snippets/2/) will allow you to gain information at the specified url. Furthermore, changing the extension (.api, .json etc.) allows you to control what format you receive the requested information.
+This command returns you the snippet list in the command line. Modifying the url (e.g. /snippets/2/) will allow you to gain information at the specified url. Furthermore, changing the extension (.api, .json etc.) allows you to control the format in which you receive the requested information.
 ```python
 http 127.0.0.1:8000/snippets.json #return in json
 http 127.0.0.1:8000/snippets.api #return in browsable api
