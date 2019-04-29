@@ -42,14 +42,14 @@ pip install httpie
 httpie is a cURL-like HTTP client with easy-to-read syntax. We will be using it for the purposes of this example.
 ### HTTP GET
 This command returns you the snippet list in the command line. Modifying the url (e.g. /snippets/2/) will allow you to gain information at the specified url. Furthermore, changing the extension (.api, .json etc.) allows you to control the format in which you receive the requested information.
-```python
+```
 http 127.0.0.1:8000/snippets.json #return in json
 http 127.0.0.1:8000/snippets.api #return in browsable api
 ```
 
 ### HTTP OPTION
 This command returns you communication options in the url.
-```python
+```
 http OPTIONS 127.0.0.1:8000
 ```
 
@@ -57,28 +57,28 @@ http OPTIONS 127.0.0.1:8000
 Now, we will be doing a simple POST and DELETE from the snippets list. Due to authorization needed, only users can post, and only owners of posts can delete them. This will be demonstrated below:
 
 Firstly, input the following code to post "hello world" into the code field of the snippet. We will be logging in as user Penelope.
-```python
+```
 http -a Penelope:testpassword POST 127.0.0.1:8000/snippet/ code="hello world"
 ```
 Secondly, we can input another snippet using user penny.
-```python
+```
 http -a penny:testpassword POST 127.0.0.1:8000/snippet/ code="hello earth"
 ```
 Now, let's test the delete functions. Using user penny, we are unable to delete what user Penelope has posted. However, we should be able to delete our own snippets.
-```python
+```command line
 http -a penny:testpassword DELETE 127.0.0.1:8000/snippet/1/ #this should return an authorisation error
-http -a penny:testpassword DELETE 127.0.0.1:8000/snippet/2/ #this should return an authorisation error
+http -a penny:testpassword DELETE 127.0.0.1:8000/snippet/2/ #this should delete the snippet
 ```
 
 ### HTTP PUT and PATCH
 The PUT command refers to full update of a resource. We can test this on a snippet.
-```python
+```
 http -a Penelope:testpassword PUT 127.0.0.1:8000/snippet/1/ code="success!!"
 ```
 Upon refreshing the page, the snippet's code field should be updated.
 
 Similarly, the PATCH command updates the resource, but only partially.
-```python
+```
 http -a Penelope:testpassword PATCH 127.0.0.1:8000/snippet/1/ code="success again!!"
 ```
 Like before, only owners of the posts can update its contents.
