@@ -58,28 +58,28 @@ Now, we will be doing a simple POST and DELETE from the snippets list. Due to au
 
 Firstly, input the following code to post "hello world" into the code field of the snippet. We will be logging in as user Penelope.
 ```
-http -a Penelope:testpassword POST 127.0.0.1:8000/snippet/ code="hello world"
+http -a Penelope:testpassword POST 127.0.0.1:8000/snippets/ code="hello world"
 ```
 Secondly, we can input another snippet using user penny.
 ```
-http -a penny:testpassword POST 127.0.0.1:8000/snippet/ code="hello earth"
+http -a penny:testpassword POST 127.0.0.1:8000/snippets/ code="hello earth"
 ```
 Now, let's test the delete functions. Using user penny, we are unable to delete what user Penelope has posted. However, we should be able to delete our own snippets.
 ```command line
-http -a penny:testpassword DELETE 127.0.0.1:8000/snippet/1/ #this should return an authorisation error
-http -a penny:testpassword DELETE 127.0.0.1:8000/snippet/2/ #this should delete the snippet
+http -a penny:testpassword DELETE 127.0.0.1:8000/snippets/1/ #this should return an authorisation error
+http -a penny:testpassword DELETE 127.0.0.1:8000/snippets/2/ #this should delete the snippet
 ```
 
 ### HTTP PUT and PATCH
 The PUT command refers to full update of a resource. We can test this on a snippet.
 ```
-http -a Penelope:testpassword PUT 127.0.0.1:8000/snippet/1/ code="success!!"
+http -a Penelope:testpassword PUT 127.0.0.1:8000/snippets/1/ code="success!!"
 ```
 Upon refreshing the page, the snippet's code field should be updated.
 
 Similarly, the PATCH command updates the resource, but only partially.
 ```
-http -a Penelope:testpassword PATCH 127.0.0.1:8000/snippet/1/ code="success again!!"
+http -a Penelope:testpassword PATCH 127.0.0.1:8000/snippets/1/ code="success again!!"
 ```
 Like before, only owners of the posts can update its contents.
 
